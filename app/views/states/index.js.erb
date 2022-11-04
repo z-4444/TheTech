@@ -1,3 +1,4 @@
-<%# <%debugger%> 
-$("#select_state").append('<%= j select_tag "state", options_from_collection_for_select(@states, "id", "name"),
-{ prompt: "Select A State" } %>');
+<%# <%debugger%>  
+
+$("#select_state").append(`<%= options_from_collection_for_select(@states, "id", "name") %>`);
+

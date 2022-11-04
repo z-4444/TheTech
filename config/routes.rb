@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :catagories
   resources :subcatagories
   resources :states,only: [:index]
+  resources :cities,only: [:index]
 
   # namespace :products do
   #   resources :comments

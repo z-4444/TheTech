@@ -56,21 +56,20 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-<%= link_to "states",states_path %>
   
   <div class="field">
-  
     <% if @user.country.present? %>
     <% else %>
       <%= f.label :Country_Name %><br />
-        <%= f.select :country, options_from_collection_for_select(Country.all, "id", "name"),
-        { prompt: "Select A Country" },class:"country" %>
-     <div id="label">
-     <div id="select_state">
-       
-     </div>
+      <%= f.select :country, options_from_collection_for_select(Country.all, "id", "name"),
+        { prompt: "Select A Country" },class:"country" %><br />
+      <%= f.label :State_Name %><br />
+      <%= f.select :state, '',{ prompt: "Select A State" },disabled: true,id:"select_state" %><br />
+      <%= f.label :City_Name %><br />
+      <%= f.select :city, '',{ prompt: "Select A City" },disabled: true,id:"select_city" %>  
     <% end %>
   </div>
+
   <div class="actions">
     <%= f.submit "Create New User" %>
   </div>
@@ -83,10 +82,19 @@
   $(document).ready(function () {
     $('.country').on('change', function() {
       var selected_value=$(this).val();
-      console.log(selected_value);
+      $("#select_state").removeAttr('disabled');
       $.ajax({
         type:"get",
         url:"/states?country="+selected_value
+      });
+
+    });
+    $('#select_state').on('change', function() {
+      var selected_value=$(this).val();
+      $("#select_city").removeAttr('disabled');
+      $.ajax({
+        type:"get",
+        url:"/cities?state="+selected_value
       });
 
     });
