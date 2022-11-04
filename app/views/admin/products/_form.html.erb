@@ -1,0 +1,22 @@
+<%= form_for [:admin, @product] do |f| %>
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@product.errors.count, "error") %> prohibited
+        this product from being saved:
+      </h2>
+      <ul>
+        <% @product.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :user_id, value: current_user.id%>
+  <%= f.text_field :name, placeholder: "Name of Product" %>
+  <%= f.number_field :price, placeholder: "price" %>
+  <%= f.file_field :images, multiple: true %>
+  <%= f.label :select_catagory %>
+  <%= f.select :subcatagory_ids, options_for_subcatagory,:prompt => 'Select One' %>
+  <%= f.submit "Submit" %>
+<% end %>

@@ -1,0 +1,5 @@
+$(document).ready(function () {
+alert('welcome');
+$("#here").html('<%= j select_tag "subcatagory", options_from_collection_for_select(@subcatagories, "id", "name"),
+{ prompt: "Select A Category" } %>')
+})

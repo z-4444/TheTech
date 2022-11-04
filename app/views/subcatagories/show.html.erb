@@ -1,0 +1,15 @@
+<%= link_to 'all Subcatagories', subcatagories_path %>
+<div>
+<%debugger%>
+<h5><%= @subcatagory.name %></h5>
+</div>
+
+
+<div>
+<h5><%= @subcatagory.user.first_name %></h5>
+</div>
+
+<% @subcatagory.products.each do |product| %>
+<%= product.name %>
+<% end %>
+

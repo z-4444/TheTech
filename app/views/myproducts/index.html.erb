@@ -1,0 +1,12 @@
+<% @products.each do |product| %>
+    <tr class="table-info">
+      <td><%= product.name %></td>
+      <td><%= product.price %></td>
+      <td><%= product.user.first_name %><%= product.user.last_name %></td>
+      <td><%= link_to 'Show', myproduct_path(product) %></td>
+      <td><%= link_to 'edit', edit_admin_product_path(product) %></td>
+      <td><%= link_to 'remove', myproduct_path(product), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      
+      
+    </tr>
+<% end %>

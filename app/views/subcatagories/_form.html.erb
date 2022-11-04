@@ -1,0 +1,20 @@
+<%= form_for @subcatagory do |f| %>
+  <% if @subcatagory.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@subcatagory.errors.count, "error") %> prohibited
+        this subcatagory from being saved:
+      </h2>
+      <ul>
+        <% @subcatagory.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :user_id, value: current_user.id%>
+  <%= f.hidden_field :catagory_id, value:'' %>
+  <%= f.text_field :name %>
+  <%= f.select :catagory_id, options_for_catagory,:prompt => 'Select One' %>  
+  <%= f.submit "Submit" %>
+<% end %>

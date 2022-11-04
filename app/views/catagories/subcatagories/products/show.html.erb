@@ -1,0 +1,53 @@
+<%= link_to 'my products', myproducts_path %>
+<div>
+<% if @product.images.present? %>
+  <%= image_tag @product.images[0].url ,style:'width:70px' %>
+<% end %>
+</div>
+
+<div>
+<h5><%= @product.name %></h5>
+</div>
+
+<div>
+<h5><%= @product.price %></h5>
+</div>
+
+<div>
+<h5><%= @product.user.first_name %></h5>
+</div>
+
+
+<%= link_to catagories_subcatagories_likes_path(product_id: @product.id,
+user_id: current_user.id), method: :post do %>
+  <i class='far fa-thumbs-up' id='Liked'></i>
+<% end %>
+
+
+<br />
+<% @product.subcatagories.each do |subcatagory| %>
+    <%= subcatagory.name %>
+<% end %>
+
+<%= render 'catagories/subcatagories/comments/comment' %>
+
+
+
+<%= render 'catagories/subcatagories/comments/form' %> 
+
+<script>
+    $(document).ready(function () {
+        var like_value=$("#Like").value;
+        console.log(like_value);
+        $("#Like").on("click" ,function(e) {
+            var btn_press= $(this).html();
+            console.log(btn_press);
+            var like_value=btn_press.value;
+            console.log(like_value);
+            $(this).toggleClass('togle_btn');
+            console.log(btn_press);
+        });
+
+    });
+
+</script>

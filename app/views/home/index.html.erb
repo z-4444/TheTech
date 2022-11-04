@@ -1,0 +1,60 @@
+<%= render 'shared/header' %>
+<h3>hi,</h3>
+<h2>My Name Is Zahid</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4 py-5 px-5" style="margin-left: 200px;" >
+<% Product.all.each do |product| %>
+  <div class="col">
+    <div class="card h-100">
+        <% if product.images.present? %>
+          <%= image_tag product.images[0].url ,class:'card-img-top' %>
+        <% end %>
+      <div class="card-body">
+        <h5 class="card-title"><%= product.name %></h5>
+        <small><%= product.price %></small>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+      <div class="card-footer">
+        <%= link_to 'Show', catagories_subcatagories_product_path(product) ,class:"btn btn-primary" %>
+        <%= link_to 'edit', edit_admin_product_path(product), class:"btn btn-primary"  %>
+        <%= link_to 'remove', myproduct_path(product), method: :delete,
+        data: { confirm: 'Are you sure?' },class:"btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+
+
+
+
+
+
+
+
+<div>
+  <% Catagory.all.each do |catagory| %>
+    <li><%= link_to catagory.name, subcatagories_path(catagory: catagory.id),id: "catagory"  %></li>
+  <% end %>
+</div>
+
+
+

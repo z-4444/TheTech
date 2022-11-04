@@ -1,0 +1,170 @@
+
+  <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <!-- Container wrapper -->
+  <div class="container">
+    <!-- Navbar brand -->
+    <%# <a class="navbar-brand" href="#"><img id="MDB-logo"
+        src="https://mdbcdn.b-cdn.net/wp-content/uploads/2018/06/logo-mdb-jquery-small.png" alt="MDB Logo"
+        draggable="false" height="30" /></a> %>
+
+    <!-- Toggle button -->
+    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+      aria-expanded="false" id="#manue"
+      aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Left links -->
+      <ul class="navbar-nav me-3">
+        <li class="nav-item">
+          <a class="nav-link active d-flex align-items-center" aria-current="page" href="#"><i
+              class="fas fa-bars pe-2"></i>Menu</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+
+      <form class="d-flex align-items-center w-100 form-search">
+        <div class="input-group">
+          <button class="btn btn-light dropdown-toggle shadow-0" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false" style="padding-bottom: 0.4rem;">All
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark fa-ul">
+              <% Subcatagory.all.each do |subcategory| %>
+               <li>
+                <%= link_to subcategory.name, catagories_subcatagories_products_path(subcatagory: subcategory.id),
+                class:"dropdown-item"  %>
+               </li>
+              <% end %>
+            <li>
+              <%= link_to 'All', catagories_subcatagories_products_path, class:"dropdown-item" %>
+            </li>
+          </ul>
+          <input type="search" class="form-control" placeholder="Search" aria-label="Search" />
+        </div>
+        <a href="#!" class="text-white"><i class="fas fa-search ps-3"></i></a>
+      </form>
+      <ul class="navbar-nav ms-3">
+        <li class="nav-item me-3">
+          <a class="nav-link d-flex align-items-center me-3" href="#!">
+            <i class="fas fa-bookmark pe-2"></i> Watchlist
+          </a>
+        </li>
+        <li class="nav-item px-1 mx-1">
+          <% if user_signed_in? %>
+          <div class="dropdown">
+            <button class="btn dropdown-toggle shadow-0" type="button" data-bs-toggle="dropdown" id="dropdownMenuButton2"
+              aria-expanded="false" style="padding-bottom: 0.4rem; color:white;">
+              <%# <i class="fa fa-user"></i> %>
+              my account
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark fa-ul" aria-labelledby="dropdownMenuButton2" >
+              <li>
+                <strong class="dropdown-item active"><%= current_user.first_name %></strong>
+              </li>
+              <li>
+              <%= link_to 'My profile', user_path(current_user) , class:"dropdown-item nav-link d-flex align-items-center" %>
+              </li>
+            </ul>
+            <% else %>
+              <%= link_to "Sign Up", new_user_registration_path,class:"nav-link d-flex align-items-center mx-1"  %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <% if user_signed_in? %>
+            <%= button_to "Logout", destroy_user_session_path,method: :delete, 
+            class:"nav-link d-flex align-items-center bg-transparent border-0" %>
+          </li>
+          <li class="nav-item">
+            <% else %>
+              
+              <%= link_to "Login", new_user_session_path,class:"nav-link d-flex align-items-center"  %>
+          <% end %>
+        </div>
+        </li>
+      </ul>
+      <ul class="dropdown-menu dropdown-menu-dark fa-ul">
+        
+      </ul>
+    </div>
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+
+<% if user_signed_in? && current_user.admin? %>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+          <%= link_to "Home" ,root_path,class:"nav-link active" %>
+          </li>
+          <li class="nav-item">
+          <%= link_to "New Product" ,new_admin_product_path,class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+          <%= link_to "New Catagory" ,new_catagory_path,class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+          <%= link_to "all Catagories" ,catagories_path,class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+          <%= link_to "New Subcatagory" ,new_subcatagory_path,class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+          <%= link_to "All Subcatagories" ,subcatagories_path,class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+          <%= link_to "All Users", admin_users_path, :class => 'nav-link'%>
+          </li>
+          <li class="nav-item">
+          <%= link_to "New User", new_admin_user_path, :class => 'nav-link'%>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+<% end %>
+
+
+
+
+
+<% if false %> 
+
+
+<h2>hello</h2>
+<% if user_signed_in? %>
+  Logged in  <strong><%= current_user.first_name %></strong>
+  <%= link_to 'My profile', current_user, :class => 'btn btn-primary me-3' %>
+  <%= button_to "Logout", destroy_user_session_path,method: :delete, :class => 'btn btn-primary me-3'%>
+  <%= link_to "All Users", users_path, :class => 'navbar-link'%>
+<% else %>
+  <%= link_to "Sign up", new_user_registration_path, :class => 'btn btn-primary me-3'  %>
+  <%= link_to "Login", new_user_session_path, :class => 'btn btn-primary me-3'  %>
+<% end %>
+</div>
+
+
+
+
+  <% end %> 
+
+
+
+<script>
+    $(document).ready(function () {
+        $(".manue").on("click" ,function(e) {
+
+        });
+
+    });
+
+</script>

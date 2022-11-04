@@ -1,0 +1,20 @@
+<div>
+<h5><%= @user.first_name %></h5>
+</div>
+<div>
+<h5><%= @user.last_name %></h5>
+</div>
+<div>
+<h5><%= @user.email %></h5>
+</div>
+<div>
+<h5><%= @user.phone_number %></h5>
+</div>
+<div>
+<h5><%= @user.status %></h5>
+</div>
+<div>
+<% if @user.image.present? %>
+  <%= image_tag @user.image.url, style: "width: 30px; display: block" %>
+<% end %>
+</div>

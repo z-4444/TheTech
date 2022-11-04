@@ -1,0 +1,10 @@
+
+<% @catagories.each do |catagory| %>
+      <tr class="table-info">
+      <td><%= catagory.name %></td>
+      <td><%= catagory.user.first_name %><%= catagory.user.last_name %></td>
+      <td><%= link_to 'Show', catagory_path(catagory) %></td>
+      <td><%= link_to 'edit', edit_catagory_path(catagory) %></td>
+      <td><%= link_to 'remove', catagory_path(catagory), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+<% end %>
