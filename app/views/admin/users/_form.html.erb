@@ -61,12 +61,12 @@
     <% if @user.country.present? %>
     <% else %>
       <%= f.label :Country_Name %><br />
-      <%= f.select :country, options_from_collection_for_select(Country.all, "id", "name"),
+      <%= f.select :country_id, options_from_collection_for_select(Country.all, "id", "name"),
         { prompt: "Select A Country" },class:"country" %><br />
       <%= f.label :State_Name %><br />
-      <%= f.select :state, '',{ prompt: "Select A State" },disabled: true,id:"select_state" %><br />
+      <%= f.select :state_id, '',{ prompt: "Select A State" },disabled: true,id:"select_state" %><br />
       <%= f.label :City_Name %><br />
-      <%= f.select :city, '',{ prompt: "Select A City" },disabled: true,id:"select_city" %>  
+      <%= f.select :city_id, '',{ prompt: "Select A City" },disabled: true,id:"select_city" %>  
     <% end %>
   </div>
 

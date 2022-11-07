@@ -16,7 +16,7 @@ end
 
 all_states=JSON.parse(File.read(Rails.root.join('db/states.json')))
 all_states.each do |c|
-    State.create!(name:c['name'],country_name:c['country_name'],country_id:c['country_id'])
+    State.create!(name:c['name'],country_name:c['country_name'],country_id:c['country_id'],state_id:c['id'])
 end
 
 

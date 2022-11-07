@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_04_054538) do
+ActiveRecord::Schema.define(version: 2022_11_05_080233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,10 +46,10 @@ ActiveRecord::Schema.define(version: 2022_11_04_054538) do
     t.string "name"
     t.string "continent"
     t.string "currency"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.integer "phone_code"
     t.string "capital"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "images", force: :cascade do |t|
@@ -91,9 +91,9 @@ ActiveRecord::Schema.define(version: 2022_11_04_054538) do
   create_table "states", force: :cascade do |t|
     t.string "name"
     t.string "country_name"
+    t.integer "state_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "state_id"
     t.integer "country_id"
   end
 

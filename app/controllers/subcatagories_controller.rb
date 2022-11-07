@@ -3,13 +3,13 @@ class SubcatagoriesController < ApplicationController
         if params.has_key?(:catagory)
             @catagory=Catagory.find(params[:catagory])
             @subcatagories=@catagory.subcatagories
+            respond_to do |format|
+                format.js { render :layout => false }
+            end
         else
             @subcatagories = Subcatagory.all
         end
-        respond_to do |format|
-            format.html
-            format.js {}
-          end
+        
     end
     def show
         @subcatagory=Subcatagory.find(params[:id])

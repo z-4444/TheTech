@@ -4,8 +4,12 @@ one:
   name: MyString
   continent: MyString
   currency: MyString
+  phone_code: 1
+  capital: MyString
 
 two:
   name: MyString
   continent: MyString
   currency: MyString
+  phone_code: 1
+  capital: MyString

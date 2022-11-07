@@ -1,35 +1,43 @@
+<%= link_to 'Edit Profile',edit_user_registration_path(@user) %>
+
 <div>
 <h5><%= @user.first_name %></h5>
 </div>
-
 <div>
 <h5><%= @user.last_name %></h5>
 </div>
-
-<div>
-<h5><%= @user.phone_number %></h5>
-</div>
-
 <div>
 <h5><%= @user.email %></h5>
 </div>
 <div>
-  <% if @user.image.present? %>
-    <%= image_tag @user.image.url ,style: "width: 100px; display: block" %>
+<h5><%= @user.phone_number %></h5>
+</div>
+<div>
+<h5><%= @user.status %></h5>
+</div>
+<div>
+<% if @user.image.present? %>
+  <%= image_tag @user.image.url, style: "width: 30px; display: block" %>
+<% end %>
+</div>
+<div>
+<% if @user.country.present? %>
+  <%= @user.country.name %>
+<% end %>
+</div>
+<% if @user.state.present? %>
+  <% State.where(state_id: @user.state_id).each do |s| %>
+  <%= s.name %>
   <% end %>
+<% end %>
+</div>
+<div>
+<% if @user.city.present? %>
+  <%= @user.city.name %>
+<% end %>
 </div>
 
 <% if @user.role == 'admin' || @user.role == 'seller' %>
-  <h4>Catagories</h4>
-  <div>
-  <%= link_to 'new catagories', new_catagory_path %>
-  <%= link_to 'all catagories', catagories_path %>
-  </div>
-  <h4>Subcatagories</h4>
-  <div>
-  <%= link_to 'all subcatagories', subcatagories_path %>
-  <%= link_to 'new subcatagories', new_subcatagory_path %>
-  </div>
   <div>
   <h4>create new product</h4>
   <%= link_to 'new product', new_admin_product_path %>
@@ -40,4 +48,14 @@
   </div>
 <% end %>
 <% if @user.role == 'admin' %>
+  <h4>Catagories</h4>
+  <div>
+  <%= link_to 'new catagories', new_catagory_path %>
+  <%= link_to 'all catagories', catagories_path %>
+  </div>
+  <h4>Subcatagories</h4>
+  <div>
+  <%= link_to 'all subcatagories', subcatagories_path %>
+  <%= link_to 'new subcatagories', new_subcatagory_path %>
+  </div>
 <% end %>

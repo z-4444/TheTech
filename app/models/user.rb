@@ -17,9 +17,9 @@ class User < ApplicationRecord
   has_many :products
   has_many :catagories
   has_many :subcatagories
-  has_one :country
-  has_one :state
-  has_one :city
+  belongs_to :country
+  belongs_to :state
+  belongs_to :city
 
 
   
@@ -34,5 +34,20 @@ class User < ApplicationRecord
   # def inactive_message   
   #   !deleted_at ? super : :deleted_account  
   # end 
+  validates :first_name, presence: true,
+    length: { minimum: 1 }
+    validates :email, format: { with: /\A(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})\z/i, message: "Invalid Email" } ,presence: true, 
+    uniqueness: { case_sensitive: false },
+    length: { minimum: 3 }
+    validates :password, presence: true, confirmation: true,
+    length: { minimum: 3 }
+
+    validate :check_password
+     def check_password
+        return if password == password_confirmation
+        errors.add :password, 'password do not match'
+    end
+    validates :phone_number, presence: true, numericality: {only_integer: true},
+    length: { minimum: 5 }
 
 end

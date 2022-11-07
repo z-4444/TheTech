@@ -1,5 +1,3 @@
-$(document).ready(function () {
 alert('welcome');
-$("#here").html('<%= j select_tag "subcatagory", options_from_collection_for_select(@subcatagories, "id", "name"),
-{ prompt: "Select A Category" } %>')
-})
+$("#select_subcatagory").append(`<li><%= j check_box_tag "product[subcatagory_ids][]", subcatagory.id, @product.subcatagory_ids.include?(subcatagory.id) %>
+      <%= label_tag subcatagory.name %></li>`);

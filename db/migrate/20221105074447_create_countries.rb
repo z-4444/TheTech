@@ -4,6 +4,8 @@ class CreateCountries < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :continent
       t.string :currency
+      t.integer :phone_code
+      t.string :capital
 
       t.timestamps
     end

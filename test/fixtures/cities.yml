@@ -2,8 +2,6 @@
 
 one:
   name: MyString
-  state_name: MyString
 
 two:
   name: MyString
-  state_name: MyString

@@ -16,7 +16,45 @@
   <%= f.text_field :name, placeholder: "Name of Product" %>
   <%= f.number_field :price, placeholder: "price" %>
   <%= f.file_field :images, multiple: true %>
-  <%= f.label :select_catagory %>
-  <%= f.select :subcatagory_ids, options_for_subcatagory,:prompt => 'Select One' %>
+  <%#= f.label :select_catagory %>
+  <%#= f.select :subcatagory_ids, options_for_subcatagory,:prompt => 'Select One' %>
+  <%= hidden_field_tag "product[subcatagory_ids][]" %>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Select Subcategory
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <% Subcatagory.all.each do |subcatagory| %>
+      <li><%= check_box_tag "product[subcatagory_ids][]", subcatagory.id, @product.subcatagory_ids.include?(subcatagory.id) %>
+      <%= label_tag subcatagory.name %></li>
+    <% end %>
+  </ul>
+</div>
+
+ 
+
+
+  <div class="field">
+    <%= f.label :Select_Catagory %><br />
+    <%= select_tag('catagory', options_from_collection_for_select(Catagory.all, "id", "name"),
+      { prompt: "Select A Category",class:"catagory" }) %><br />
+    <div id='select_subcatagory'></div>
+  </div>
+  
   <%= f.submit "Submit" %>
 <% end %>
+<script>
+  $(document).ready(function () {
+    $('.catagory').on('change', function() {
+      var selected_value=$(this).val();
+      console.log(selected_value)
+      $.ajax({
+        type:"get",
+        url:"/subcatagories?catagory="+selected_value
+      });
+
+    });
+
+  });
+
+</script>

@@ -18,3 +18,19 @@
   <%= image_tag @user.image.url, style: "width: 30px; display: block" %>
 <% end %>
 </div>
+<div>
+<% if @user.country.present? %>
+  <%= @user.country.name %>
+<% end %>
+</div>
+<% if @user.state.present? %>
+  <% State.where(state_id: @user.state_id).each do |s| %>
+  <%= s.name %>
+  <% end %>
+<% end %>
+</div>
+<div>
+<% if @user.city.present? %>
+  <%= @user.city.name %>
+<% end %>
+</div>
