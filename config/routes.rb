@@ -25,7 +25,11 @@ Rails.application.routes.draw do
 
   resources :myproducts, only: [:index,:show]
   resources :catagories
-  resources :subcatagories
+  resources :subcatagories do
+    member do
+      get :get_subcategory
+    end  
+  end
   resources :states,only: [:index]
   resources :cities,only: [:index]
 

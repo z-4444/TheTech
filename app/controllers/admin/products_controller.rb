@@ -18,10 +18,8 @@ class Admin::ProductsController < ApplicationController
     def create
         # debugger
         @product =Product.new(product_params)
-        # debugger
         if @product.save
-            @subcatagory=params[:product][:subcatagory_ids]
-            # debugger
+            @subcatagory=params[:product][:subcatagory_ids].reject(&:blank?)
             @subcatagory.each do |subcatagory|
                 ProductsSubcatagory.create!(product_id: @product.id ,subcatagory_id: subcatagory)
             end

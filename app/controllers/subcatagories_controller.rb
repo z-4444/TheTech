@@ -1,15 +1,16 @@
 class SubcatagoriesController < ApplicationController
     def index
-        if params.has_key?(:catagory)
-            @catagory=Catagory.find(params[:catagory])
-            @subcatagories=@catagory.subcatagories
-            respond_to do |format|
-                format.js { render :layout => false }
-            end
-        else
-            @subcatagories = Subcatagory.all
+        @subcatagories=Subcatagory.all
+    
+    end
+
+    def get_subcategory
+        # debugger
+        @catagory=Catagory.find(params[:id])
+        @subcatagories=@catagory.subcatagories
+        respond_to do |format|
+            format.js { render :layout => false }
         end
-        
     end
     def show
         @subcatagory=Subcatagory.find(params[:id])

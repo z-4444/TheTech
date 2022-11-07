@@ -1,3 +1,0 @@
-alert('welcome');
-$("#select_subcatagory").append(`<li><%= j check_box_tag "product[subcatagory_ids][]", subcatagory.id, @product.subcatagory_ids.include?(subcatagory.id) %>
-      <%= label_tag subcatagory.name %></li>`);

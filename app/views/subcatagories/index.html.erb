@@ -1,0 +1,10 @@
+<% @subcatagories.each do |subcategory| %>
+<tr class="table-info">
+      <td><%= subcategory.name %></td>
+      <td><%= link_to 'Show', subcatagory_path(subcategory) %></td>
+      <td><%= link_to 'edit', edit_subcatagory_path(subcategory) %></td>
+      <td><%= link_to 'remove', subcatagory_path(subcategory), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      
+      
+    </tr>
+<% end %>
