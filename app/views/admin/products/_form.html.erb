@@ -16,20 +16,12 @@
   <%= f.text_field :name, placeholder: "Name of Product" %>
   <%= f.number_field :price, placeholder: "price" %>
   <%= f.file_field :images, multiple: true %>
-  <%#= f.label :select_catagory %>
-  <%#= f.select :subcatagory_ids, options_for_subcatagory,:prompt => 'Select One' %>
 
   <div class="field">
     <% if @product.subcatagories.present? %>
       <% @product.subcatagories.each do |subcatagory| %>
-        <%= subcatagory.name %>
+        <%= subcatagory.name %><br />
       <% end %>
-      <h4>want update Subcategory</h4>
-      <%= f.label :Select_Catagory %><br />
-      <%= select_tag('catagory', options_from_collection_for_select(Catagory.all, "id", "name"),
-        { prompt: "Select A Category",class:"catagory" }) %><br />
-      <div>  
-        <%= f.select :subcatagory_ids,'',{ prompt: 'select a Subcategory' },{:multiple => true, :size => 4,hidden: true,id:'select_subcatagory' } %>  
     <% else %>
       <%= f.label :Select_Catagory %><br />
       <%= select_tag('catagory', options_from_collection_for_select(Catagory.all, "id", "name"),

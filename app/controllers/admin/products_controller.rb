@@ -16,7 +16,6 @@ class Admin::ProductsController < ApplicationController
     end
     
     def create
-        # debugger
         @product =Product.new(product_params)
         if @product.save
             @subcatagory=params[:product][:subcatagory_ids].reject(&:blank?)
