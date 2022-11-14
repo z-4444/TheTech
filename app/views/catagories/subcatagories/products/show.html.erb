@@ -1,38 +1,41 @@
 <%= link_to 'my products', myproducts_path %>
-<div>
-<% if @product.images.present? %>
-  <%= image_tag @product.images[0].url ,style:'width:70px' %>
-<% end %>
+<div claass='container' >
+  <div class="row row-cols-1 row-cols-md-2 g-4 py-5 px-5" >
+    <div class='col'>
+      <% if @product.images.present? %>
+        <%= image_tag @product.images[0].url ,style:'width:200px' %>
+      <% end %>
+    </div>
+    <div class='col'>
+      <div>
+        <h5><%= @product.name %></h5>
+      </div>
+      <div>
+        <p><%= @product.price %></p>
+      </div>
+      <div>
+        <p><%= @product.user.first_name %></p>
+      </div>
+        <%= link_to catagories_subcatagories_likes_path(product_id: @product.id,
+        user_id: current_user.id), method: :post do %>
+          <i class='far fa-thumbs-up' id='Liked'></i>
+        <% end %>
+
+
+        <br />
+        <% @product.subcatagories.each do |subcatagory| %>
+            <%= subcatagory.name %>
+        <% end %>
+      <div id='add_cart'>
+      <button type="button" class="btn bg-transparent btn-lg border-primary rounded-pill " value='1' >Add To Cart</button>
+      </div>
+
+    <div>
+    </div>
+  </div>
 </div>
-
-<div>
-<h5><%= @product.name %></h5>
-</div>
-
-<div>
-<h5><%= @product.price %></h5>
-</div>
-
-<div>
-<h5><%= @product.user.first_name %></h5>
-</div>
-
-
-<%= link_to catagories_subcatagories_likes_path(product_id: @product.id,
-user_id: current_user.id), method: :post do %>
-  <i class='far fa-thumbs-up' id='Liked'></i>
-<% end %>
-
-
-<br />
-<% @product.subcatagories.each do |subcatagory| %>
-    <%= subcatagory.name %>
-<% end %>
 
 <%= render 'catagories/subcatagories/comments/comment' %>
-
-
-
 <%= render 'catagories/subcatagories/comments/form' %> 
 
 <script>
@@ -42,10 +45,19 @@ user_id: current_user.id), method: :post do %>
         $("#Like").on("click" ,function(e) {
             var btn_press= $(this).html();
             console.log(btn_press);
-            var like_value=btn_press.value;
-            console.log(like_value);
-            $(this).toggleClass('togle_btn');
+        });
+        $(".btn").on("click" ,function(e) {
+          var btn_press= $(this).html();
             console.log(btn_press);
+            var product_id = <%= @product.id %>
+            var user_id = <%= @product.id %>
+            // debugger
+            $.ajax({
+              type:"post",
+              url:"/cart_products?product_id="+product_id
+              // debugger 
+              // data: { product_id: product_id }
+            });
         });
 
     });

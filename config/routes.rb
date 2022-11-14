@@ -33,9 +33,14 @@ Rails.application.routes.draw do
   resources :states,only: [:index]
   resources :cities,only: [:index]
 
-  # namespace :products do
-  #   resources :comments
-  # end
+  resources :carts,only: [:show]
+  resources :cart_products,only: [:create,:destroy,:show] do
+    member do
+      post :add_quantity
+      post :reduce_quantity
+    end
+  end
+  resources :orders
   
   get 'home/index'
 

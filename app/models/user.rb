@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+
+  after_create :create_user_cart
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -20,6 +22,7 @@ class User < ApplicationRecord
   belongs_to :country
   belongs_to :state
   belongs_to :city
+  has_one :cart
 
 
   
@@ -34,7 +37,7 @@ class User < ApplicationRecord
   # def inactive_message   
   #   !deleted_at ? super : :deleted_account  
   # end 
-  validates :first_name, presence: true,
+    validates :first_name, presence: true,
     length: { minimum: 1 }
     validates :email, format: { with: /\A(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})\z/i, message: "Invalid Email" } ,presence: true, 
     uniqueness: { case_sensitive: false },
@@ -49,5 +52,11 @@ class User < ApplicationRecord
     end
     validates :phone_number, presence: true, numericality: {only_integer: true},
     length: { minimum: 5 }
+
+
+
+  def create_user_cart
+      @current_cart=Cart.create(user_id: self.id)
+  end
 
 end
