@@ -1,2 +1,2 @@
-<%#debugger%>
 $("#product_cart-<%= @cart_product.id %>").remove();
+$("#total_price").html('<%= number_to_currency(@cart_product.cart.sub_total) %>')

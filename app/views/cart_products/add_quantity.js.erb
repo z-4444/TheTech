@@ -1,0 +1,7 @@
+<%#debugger%>
+$("#product-price-<%= @cart_product.id %>").html('<%= number_to_currency(@cart_product.total_price) %>')
+
+if($("#minus-<%= @cart_product.id %>").attr("disabled"))
+  $("#minus-<%= @cart_product.id %>").removeAttr('disabled');
+
+$("#total_price").html('<%= number_to_currency(@cart_product.cart.sub_total) %>')

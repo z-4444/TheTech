@@ -24,21 +24,21 @@
                   <%# <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p> %>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                  <button class="btn btn-link px-2"
+                  <button class="btn btn-link px-2 minus" id="minus-<%= cart_product.id %>"
                     onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                     <i class="fas fa-minus"></i>
                   </button>
 
-                  <input id="form1" min="0" name="quantity" value="<%= cart_product.quantity %>" type="number"
-                    class="form-control form-control-sm" />
+                  <input min="1" name="quantity" value="<%= cart_product.quantity %>" type="number"
+                      id='input-<%= cart_product.id %>' class="form-control form-control-sm" readonly />
 
-                  <button class="btn btn-link px-2"
+                  <button class="btn btn-link px-2 plus" id="<%= cart_product.id %>"
                     onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                     <i class="fas fa-plus"></i>
                   </button>
                 </div>
                 <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                  <h5 class="mb-0"><%= number_to_currency(cart_product.product.price) %></h5>
+                  <h5 class="mb-0" id='product-price-<%= cart_product.id %>' ><%= number_to_currency(cart_product.total_price) %></h5>
                 </div>
                 <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                   <button type="button" class="btn bg-transparent text-danger" id='<%= cart_product.id %>' ><i class="fas fa-trash fa-lg"></i></button>
@@ -47,6 +47,15 @@
             </div>
           </div>
         <% end %>
+        <div class="card mb-4">
+          <div class="card-body p-4 d-flex flex-row">
+            <div class="form-outline flex-fill">
+            <p><strong>Total Price</strong></p>
+            </div>
+            <p class="fs-6 fw-light border border-secondary p-1" id='total_price'> <%= number_to_currency(@cart.sub_total) %></p>
+            <%# <button type="button" class="btn btn-outline-warning btn-lg ms-3">Apply</button> %>
+          </div>
+        </div>
         <%# <div class="card mb-4">
           <div class="card-body p-4 d-flex flex-row">
             <div class="form-outline flex-fill">
@@ -70,11 +79,39 @@
 
 <script>
     $(document).ready(function () {
+      $("[id*=minus-]").each(function() {
+        this.style.color = "red";
+        var a=$(this).attr('id')
+        var b=parseInt(a.replace(/[^0-9.]/g, ""));
+        var c=$("[id='input-" + b+ "']").val();
+        if (c==1) {
+          $("[id='minus-" + b+ "']").prop('disabled', true);
+        }
+        });
         $(".text-danger").on("click" ,function(e) {
           var btn_press= $(this).attr('id');
             $.ajax({
               type:"delete",
               url:"/cart_products/"+btn_press
+            });
+        });
+        $('.plus').on('click', function(e) {
+           var btn_press= $(this).attr('id');
+           $.ajax({
+              type:"post",
+              url:"/cart_products/"+btn_press+"/add_quantity"
+            }); 
+        });
+        $(".minus").on("click" ,function(e) {
+          var btn= $(this).attr('id');
+          var btn_press=parseInt(btn.replace(/[^0-9.]/g, ""));
+          var y=$("[id='input-" + btn_press+ "']").val();
+           if (y==1) {
+            $("[id='minus-" + btn_press+ "']").prop('disabled', true);
+            }
+            $.ajax({
+              type:"post",
+              url:"/cart_products/"+btn_press+"/reduce_quantity"
             });
         });
     });

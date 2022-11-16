@@ -4,10 +4,7 @@ class Cart < ApplicationRecord
     belongs_to :user
 
     def sub_total
-        sum = 0
-        self.cart_products.each do |cart_product|
-          sum+= cart_product.total_price
-        end
-        return sum
+      @cart_product = CartProduct.joins(:product).where(cart_id: self.id)
+      return @cart_product.map(&:total_price).reduce(:+)
     end
 end

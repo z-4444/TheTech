@@ -14,7 +14,6 @@ class CartProductsController < ApplicationController
 
     def destroy
         @cart_product = CartProduct.find(params[:id])
-        @cart_product.destroy
         if @cart_product.destroy
             respond_to do |format|
                 format.js { render :layout => false }
@@ -23,9 +22,6 @@ class CartProductsController < ApplicationController
     end
 
     def add_quantity
-        
-        # In progess
-
         @cart_product = CartProduct.find(params[:id])
         @cart_product.quantity += 1
         if @cart_product.save
@@ -36,13 +32,8 @@ class CartProductsController < ApplicationController
     end
 
     def reduce_quantity
-
-        # In progess
-
         @cart_product = CartProduct.find(params[:id])
-        if @cart_product.quantity > 1
-            @cart_product.quantity -= 1            
-        end
+        @cart_product.quantity -= 1            
         if @cart_product.save
             respond_to do |format|
                 format.js { render :layout => false }
