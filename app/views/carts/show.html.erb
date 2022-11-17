@@ -1,3 +1,4 @@
+<% if @cart.cart_products.present? %>
 <section class="h-100" style="background-color: #eee;">
   <div class="container h-100 py-5">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -71,10 +72,57 @@
             <button type="button" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
           </div>
         </div> %>
+        <div class="card">
+          <div class="card-body">
+            <button type="button" class="btn btn-warning btn-block btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Order Now</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
+  
+<% else %>
+  <div class='text-center mt-5'>
+  <h3>Your cart is empty</h3>
+  </div>
+<% end %>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Order Detail</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <%= form_for(Order.new) do |f| %>
+       <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <%= f.label :name, class:"col-form-label" %><br>
+            <%= f.text_field :name, required: true, autofocus: true,class:"form-control", id:"user-name",value:current_user.first_name %>
+          </div>
+           <%= f.hidden_field :user_id, value:current_user.id %>
+          <div class="mb-3">
+            <%= f.label :email, class:"col-form-label" %><br>
+            <%= f.text_field :email, required: true, autofocus: true,class:"form-control", id:"user-email",value:current_user.email %>
+          </div>
+          <div class="mb-3">
+            <%= f.label :address, class:"col-form-label" %><br>
+            <%= f.text_area :address, required: true, autofocus: true,class:"form-control", id:"user-email" %>
+          </div>
+        </form>
+       </div>
+       <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <%= f.submit 'Confirm Order',class:"btn btn-primary" %>  
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>  
+
 
 
 <script>

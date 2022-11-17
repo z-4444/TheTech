@@ -10,21 +10,22 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
   end
+
   def create
     @order = Order.new(order_params)
-    @current_cart.cart_products.each do |item|
-      @order.cart_products << item
-      item.cart_id = nil
-    end
-    @order.save
-    Cart.destroy(session[:cart_id])
-    session[:cart_id] = nil
-    redirect_to root_path
+    @current_cart=current_user.cart
+     if @order.save
+      @current_cart.cart_products.each do |product|
+        Orderproduct.create!(order_id: @order.id,product_id:product.product.id,quantity:product.quantity)
+      end  
+     end
+    @current_cart.cart_products.destroy_all
+    redirect_to order_path(@order)
   end
   
   private
     def order_params
-      params.require(:order).permit(:name, :email, :address)
+      params.require(:order).permit(:name, :email, :address,:user_id)
     end
 
 end
