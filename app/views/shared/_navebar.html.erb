@@ -48,11 +48,13 @@
         <a href="#!" class="text-white"><i class="fas fa-search ps-3"></i></a>
       </form>
       <ul class="navbar-nav ms-3">
+      <% if user_signed_in? %>
         <li class="nav-item me-3">
            <%= link_to cart_path(current_user.cart), :class=> "nav-link d-flex align-items-center me-3" do %>
              <i class="fas fa-shopping-cart" aria-hidden="true" target="_blank"></i>
            <% end %>
         </li>
+      <% end %>
         <li class="nav-item px-1 mx-1">
           <% if user_signed_in? %>
           <div class="dropdown">

@@ -9,8 +9,6 @@ module AddProdcutsToCart
                 @cart_product.quantity += 1
             else
                 @cart_product = CartProduct.create(product_id: chosen_product.id,cart_id:current_cart.id)
-                @cart_product.cart = current_cart
-                @cart_product.product = chosen_product
             end
         end
     end
