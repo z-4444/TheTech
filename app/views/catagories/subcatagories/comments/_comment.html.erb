@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <div id="comment" >
 <section style="background-color: #f7f6f6;">
   <div class="container my-5 py-5 text-dark">
@@ -6,7 +8,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
           <h4 class="text-dark mb-0">All comments</h4>
         </div>
-          <% @product.comments.each do |comment| %>
+          <% @product.comments.order("created_at ASC").each do |comment| %>
           <div class="card mb-3" id="comment-<%= comment.id %>" >
           
             <div class="card-body">
@@ -19,6 +21,11 @@
                     <h6 class="text-primary fw-bold mb-0">
                       <%= comment.user.first_name %><%= comment.user.last_name %>
                     </h6>
+                    <% if comment.score != nil %>
+                        <p class="small mb-0 ms-2"><div id="rateyo-<%= comment.id %>" value="<%= comment.score %>" ></div></p>
+                      <% else %>
+                      <p>No rating</p>
+                      <% end %>
                     <p class="mb-0"><%= time_ago_in_words(comment.created_at) %> ago</p>
                   </div>
                   <p class="mt-2 mb-3 pb-1">
@@ -40,3 +47,18 @@
   </div>
 </section>
 </div>
+
+<script>
+  $(function () {
+    $("[id*=rateyo-]").each(function() {
+      var btn= $(this).attr('id');
+      var btn_press=parseInt(btn.replace(/[^0-9.]/g, ""));
+      y=$("[id='rateyo-" + btn_press+ "']").attr('value');
+      $("[id='rateyo-" + btn_press+ "']").rateYo({
+      rating: y,
+      readOnly: true  
+      });
+    })
+  });
+
+</script>

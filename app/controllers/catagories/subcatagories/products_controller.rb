@@ -1,9 +1,7 @@
 class Catagories::Subcatagories::ProductsController < ApplicationController
     def index
-        # debugger <% @subcatagory.products.each do |product| %>
         if params.has_key?(:subcatagory)
             @subcatagory=Subcatagory.find(params[:subcatagory])
-            # debugger
             @products=@subcatagory.products
         else
             @products = Product.all
