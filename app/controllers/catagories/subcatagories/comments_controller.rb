@@ -1,18 +1,22 @@
 class Catagories::Subcatagories::CommentsController < ApplicationController
     def create
-        @comment = Comment.create!(comment_params)
-        @comment.save
-        redirect_to catagories_subcatagories_product_path(@comment.product_id)
-        # debugger
-        
+        @comment = Comment.new(comment_params)
+        @product=@comment.product
+        if @comment.save 
+            respond_to do |format|
+                format.js   {}
+                format.json { render json: @comment, status: :created, location: @comment }
+            end
+        end
     end
 
     def destroy
-        # debugger
         @comment = Comment.find(params[:id])
-        
-        @comment.destroy
-        redirect_to catagories_subcatagories_product_path(@comment.product_id)
+        if @comment.destroy
+            respond_to do |format|
+                format.js   { render :layout => false }
+            end 
+        end
         
     end
      

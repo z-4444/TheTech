@@ -23,6 +23,11 @@
       <%= f.check_box :remove_image %>
       Remove image
   </label>
+  <% else %>
+  <div class="field">
+    <%= f.label :image %><br />
+    <%= f.file_field :image, autofocus: true %>
+  </div>
   <% end %>
 
   <div class="field">
