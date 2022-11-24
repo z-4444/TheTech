@@ -23,10 +23,12 @@
        <td>no image</td>
       <% end %>
       <td><%= user.status %></td>
+      <% if can? [:read, :update, :destroy],User %>
       <td><%= link_to 'Show', admin_user_path(user) %></td>
-      <td><%= link_to 'edit', edit_user_registration_path(user.id) %></td>
-      <td><%= link_to 'remove', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <td><%= user.status %></td>
+      <td><%= link_to 'edit', edit_user_registration_path(user) %></td>
+      <td><%= link_to 'remove', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>        
+      <% end %>
+
       <td></td>
       
     </tr>

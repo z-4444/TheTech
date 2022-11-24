@@ -1,4 +1,5 @@
 class Catagories::Subcatagories::CommentsController < ApplicationController
+    load_and_authorize_resource
     def create
         @comment = Comment.new(comment_params)
         @product=@comment.product
@@ -10,6 +11,14 @@ class Catagories::Subcatagories::CommentsController < ApplicationController
         end
     end
 
+    def edit
+        # debugger
+        @product=@comment.product
+        respond_to do |format|
+            format.js
+          end
+    end
+
     def destroy
         @comment = Comment.find(params[:id])
         if @comment.destroy
@@ -19,6 +28,18 @@ class Catagories::Subcatagories::CommentsController < ApplicationController
         end
         
     end
+
+    def update
+        debugger
+        @comments = Comment.find(params[:id])
+        respond_to do |format|
+        if @comment.update(comment_params)
+          format.js { render :layout => false }
+        else
+          format.js
+        end
+        end
+      end
      
     private
     def comment_params

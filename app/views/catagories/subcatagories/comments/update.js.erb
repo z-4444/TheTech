@@ -1,0 +1,6 @@
+<%debugger%>
+
+$('#commentform').html("<%= escape_javascript( render 'form') %>")
+$('.commentbox').val('.commentbox').val('');
+$('.commentbox').focus();
+$('#commentdiv').html("<%= j (render 'comment') %>");

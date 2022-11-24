@@ -1,4 +1,6 @@
 class Catagories::Subcatagories::ProductsController < ApplicationController
+    # skip_before_action :authenticate_user!, only: [:index,:show]
+    load_and_authorize_resource
     def index
         if params.has_key?(:subcatagory)
             @subcatagory=Subcatagory.find(params[:subcatagory])

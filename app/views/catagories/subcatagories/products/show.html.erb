@@ -18,10 +18,13 @@
       <div>
         <p><%= @product.user.first_name %></p>
       </div>
+      <% if user_signed_in? %>
         <%= link_to catagories_subcatagories_likes_path(product_id: @product.id,
         user_id: current_user.id), method: :post do %>
           <i class='far fa-thumbs-up' id='Liked'></i>
-        <% end %>
+        <% end %>        
+      <% end %>
+
 
 
         <br />
@@ -37,9 +40,12 @@
   </div>
 </div>
 
-<%= render 'catagories/subcatagories/comments/form' %> 
-<%= render 'catagories/subcatagories/comments/comment' %>
-
+<div class="commentsform" id='commentForm' >
+   <%= render 'catagories/subcatagories/comments/form' %>
+</div> 
+<div id='commentdiv' >
+   <%= render 'catagories/subcatagories/comments/comment' %>  
+</div>
 
 <script>
     $(document).ready(function () {
@@ -49,13 +55,13 @@
             var btn_press= $(this).html();
             console.log(btn_press);
         });
-          $('.btn').click(function() {
-              $('.btn').attr("disabled", "disabled"); // disable button
+          $('.rounded-pill').click(function() {
+              $('.rounded-pill').attr("disabled", "disabled"); // disable button
               window.setTimeout(function() {
-                $('.btn').removeAttr("disabled"); // enable button
+                $('.rounded-pill').removeAttr("disabled"); // enable button
               }, 200 /* 2 sec */); 
           });
-        $(".btn").on("click" ,function(e) {
+        $(".rounded-pill").on("click" ,function(e) {
           var btn_press= $(this).html();
             console.log(btn_press);
             var product_id = <%= @product.id %>

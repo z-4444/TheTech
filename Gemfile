@@ -64,3 +64,5 @@ gem 'jquery-rails'
 gem 'carrierwave', '~> 2.0'
 
 gem "font-awesome-sass", "~> 6.2.0"
+
+gem 'cancancan'

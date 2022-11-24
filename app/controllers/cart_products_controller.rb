@@ -1,4 +1,5 @@
 class CartProductsController < ApplicationController
+    load_and_authorize_resource
     include AddProdcutsToCart
 
     def create
