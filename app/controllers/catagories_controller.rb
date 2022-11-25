@@ -3,19 +3,19 @@ class CatagoriesController < ApplicationController
         @catagories = Catagory.all
     end
     def show
-        @catagory=Catagory.find(params[:id])
+        @catagory = Catagory.find(params[:id])
     end
 
     def new
-        @catagory =Catagory.new
+        @catagory = Catagory.new
     end
 
     def edit
-        @catagory=Catagory.find(params[:id])
+        @catagory = Catagory.find(params[:id])
     end
 
     def create
-        @catagory =Catagory.new(catagory_params)
+        @catagory = Catagory.new(catagory_params)
         if @catagory.save
             redirect_to catagory_path(@catagory)
         else
@@ -36,7 +36,7 @@ class CatagoriesController < ApplicationController
     def destroy
         @catagory=Catagory.find(params[:id])
         @catagory.destroy
-        redirect_to users_catagories_path 
+        redirect_to catagories_path 
         
     end
 

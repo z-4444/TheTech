@@ -1,0 +1,124 @@
+<!--Main Navigation-->
+<header>
+<!-- Sidebar -->
+<nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+    <div class="position-sticky">
+    <div class="list-group list-group-flush mx-3 mt-4">
+        <%= link_to orders_path,class:"list-group-item list-group-item-action py-2 ripple" do %>
+            <i class="fas fa-chart-bar fa-fw me-3"></i><span>Orders</span>
+        <% end %>
+        <%= link_to subcatagories_path,class:"list-group-item list-group-item-action py-2 ripple" do %>
+            <i class="fas fa-rectangle-list me-3"></i><span>Subcategories</span>
+        <% end %>
+        <%= link_to catagories_path,class:"list-group-item list-group-item-action py-2 ripple" do %>
+            <i class="fas fa-list-alt me-3"></i><span>Categories</span>
+        <% end %>
+        <%= link_to orders_path,class:"list-group-item list-group-item-action py-2 ripple" do %>
+            <i class="fas fa-calendar fa-fw me-3"></i><span>Products</span>
+        <% end %>
+        <%= link_to admin_users_path,class:"list-group-item list-group-item-action py-2 ripple" do %>
+            <i class="fas fa-users fa-fw me-3"></i><span>Users</span>
+        <% end %>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+            class="fas fa-money-bill fa-fw me-3"></i><span>Sales</span></a>
+    </div>
+    </div>
+</nav>
+<nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+
+    <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-mdb-target="#sidebarMenu"
+        aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <a class="navbar-brand" href="#">
+    <%= image_tag("thetech.png", size: "80x40", alt: "Edit Entry")%>
+    </a>
+    <form class="d-none d-md-flex input-group w-auto my-auto">
+        <input autocomplete="off" type="search" class="form-control rounded"
+        placeholder='Search (ctrl + "/" to focus)' style="min-width: 225px;" />
+        <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
+    </form>
+
+    <ul class="navbar-nav ms-auto d-flex flex-row">
+
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
+            id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle"
+            height="22" alt="Avatar" loading="lazy" />
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+            <li>
+            <% if user_signed_in? %>
+            <%= link_to "My Profile", current_user,class:"dropdown-item" %>
+            <% end %>
+            </li>
+            <li>
+            <% if user_signed_in? %>
+            <%= link_to "Logout", destroy_user_session_path,method: :delete,class:"dropdown-item" %>
+            <% end %>
+            </li>
+            <li>
+            <a class="dropdown-item" href="#">Settings</a>
+            </li>
+        </ul>
+        </li>
+    </ul>
+    </div>
+
+</nav>
+
+</header>
+
+<main class="mx-5" style="margin-top: 58px;">
+<div class="container pt-4"></div>
+<div class="row">
+  <div class="col-sm-6 mb-4">
+    <div class="card text-center" style="background-color:blue; color:white;" >
+      <div class="card-body p-4">
+        <h5 class="card-title p-4" > <%= link_to " Create New Product" ,new_admin_product_path ,class:"nav-link link-light hover" %></h5>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 mb-4">
+    <div class="card text-center" style="background-color:yellow;" >
+      <div class="card-body p-4">
+        <h5 class="card-title p-4" > <%= link_to "Create New Category" ,new_catagory_path ,class:"nav-link link-dark hover" %></h5>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 mb-4">
+    <div class="card text-center" style="background-color:yellow;" >
+      <div class="card-body p-4">
+        <h5 class="card-title p-4" > <%= link_to "Create New Subcategory" ,new_subcatagory_path ,class:"nav-link link-dark hover" %></h5>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 mb-4">
+    <div class="card text-center" style="background-color:blue; color:white;" >
+      <div class="card-body p-4">
+        <h5 class="card-title p-4" > <%= link_to "Create New User", new_admin_user_path ,class:"nav-link link-light hover" %></h5>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+<script>
+$(document).ready(function(){
+
+  $(".hover").mouseover(function(){
+    $(this).animate({ fontSize: "+=8px"});
+  });
+  $(".hover").mouseout(function(){
+    $(this).animate({ fontSize: "-=8px"});
+  });
+  $(".hover").click(function(){
+    if ($(this).css('font-size')!='') {
+        $(this).removeAttr('style');
+    };
+  });
+});
+</script>

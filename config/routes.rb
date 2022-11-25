@@ -42,6 +42,9 @@ Rails.application.routes.draw do
   end
   resources :orders
   
+  get 'admin_dashboard/index'
+  get 'admin_dashboard/show'
+
   get 'home/index'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

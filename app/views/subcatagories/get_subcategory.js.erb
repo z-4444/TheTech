@@ -1,1 +1,2 @@
-   $("#select_subcatagory").html(`<%= options_from_collection_for_select(@subcatagories, "id", "name") %>`);
+$(".label").html("<label class='p-1' >Select Subcategory<label> ")
+$("#select_subcatagory").html(`<%= options_from_collection_for_select(@subcatagories, "id", "name") %>`);

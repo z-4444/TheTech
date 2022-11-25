@@ -12,27 +12,48 @@
       </ul>
     </div>
   <% end %>
-  <%= f.hidden_field :user_id, value: current_user.id%>
-  <%= f.text_field :name, placeholder: "Name of Product" %>
-  <%= f.number_field :price, placeholder: "price" %>
-  <%= f.file_field :images, multiple: true %>
-
   <div class="field">
-    <% if @product.subcatagories.present? %>
-      <% @product.subcatagories.each do |subcatagory| %>
-        <%= subcatagory.name %><br />
-      <% end %>
-    <% else %>
-      <%= f.label :Select_Catagory %><br />
-      <%= select_tag('catagory', options_from_collection_for_select(Catagory.all, "id", "name"),
-        { prompt: "Select A Category",class:"catagory" }) %><br />
-      <%= f.select :subcatagory_ids,'',{ prompt: 'select a Subcategory' },{:multiple => true, :size => 4,hidden: true,id:'select_subcatagory' } %>  
-    <% end %>
-   </div>
+    <div class="m-4" >
+      <%= f.label :name_Of_Product,class:"p-1" %>
+      <%= f.text_field :name %>
+    </div>
+  </div>
+  <%= f.hidden_field :user_id, value: current_user.id%>
+  <div class="field">
+    <div class="m-4" >
+      <%= f.label :price_Of_Product,class:"p-1" %>
+      <%= f.number_field :price %>
+    </div>
+  </div>
+  <div class="field">
+    <div class="m-4" >
+      <%= f.label :images_Of_Product,class:"p-1" %>
+      <%= f.file_field :images, multiple: true %>
+    </div>
   </div>
   
-  <%= f.submit "Submit" %>
+  <div class="field">
+    <div class="m-4" >
+        <%= f.label :Select_Catagory,class:"p-1" %>
+        <%= select_tag('catagory', options_from_collection_for_select(Catagory.all, "id", "name"),
+          { prompt: "Select A Category",class:"catagory" }) %> 
+   </div>
+  </div>
+
+  <div class="field">
+    <div class="m-4" >
+      <div class='label'></div>
+      <%= f.select :subcatagory_ids,'',{ prompt: 'select a Subcategory' },{:multiple => true, :size => 4,hidden: true,id:'select_subcatagory' } %>
+    </div>
+  </div>
+  <div class="field">
+    <div class="m-4" >
+      <%= f.submit "Submit" %>
+    </div>
+  </div>
+
 <% end %>
+
 <script>
   $(document).ready(function () {
     $('.catagory').on('change', function() {

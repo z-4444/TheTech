@@ -1,18 +1,45 @@
-<%= form_for @catagory do |f| %>
-  <% if @catagory.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@catagory.errors.count, "error") %> prohibited
-        this catagory from being saved:
-      </h2>
-      <ul>
-        <% @catagory.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Add New Category</h3>
+             <%= form_for @catagory do |f| %>
+              <form>
+                <div>
+                  <% if @catagory.errors.any? %>
+                    <div id="error_explanation">
+                      <h2>
+                        <%= pluralize(@catagory.errors.count, "error") %> prohibited
+                        this catagory from being saved:
+                      </h2>
+                      <ul>
+                        <% @catagory.errors.full_messages.each do |msg| %>
+                          <li><%= msg %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 mb-4">
+                    <div class="form-outline">
+                      <label class="form-label pb-1" for="firstName">Category Name</label>
+                      <%= f.text_field :name,class:"form-control form-control-lg",id:"firstName" %>
+                      <%= f.hidden_field :user_id, value: current_user.id %>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mt-4">
+                  <%= f.submit class:"btn btn-primary mb-4" %>
+                </div>
+              </form>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-  <%= f.hidden_field :user_id, value: current_user.id%>
-  <%= f.text_field :name %>
-  <%= f.submit "Submit" %>
-<% end %>
+  </div>
+</section>
