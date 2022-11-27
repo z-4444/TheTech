@@ -66,3 +66,7 @@ gem 'carrierwave', '~> 2.0'
 gem "font-awesome-sass", "~> 6.2.0"
 
 gem 'cancancan'
+
+gem 'jquery-datatables'
+
+gem 'ajax-datatables-rails'

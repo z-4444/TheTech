@@ -9,6 +9,7 @@
 //= require popper
 //= require bootstrap
 //= require turbolinks
+//= require datatables
 //= require_tree 
 
 import Rails from "@rails/ujs"

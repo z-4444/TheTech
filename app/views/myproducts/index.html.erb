@@ -1,12 +1,38 @@
-<% @products.each do |product| %>
-    <tr class="table-info">
-      <td><%= product.name %></td>
-      <td><%= product.price %></td>
-      <td><%= product.user.first_name %><%= product.user.last_name %></td>
-      <td><%= link_to 'Show', myproduct_path(product) %></td>
-      <td><%= link_to 'edit', edit_admin_product_path(product) %></td>
-      <td><%= link_to 'remove', myproduct_path(product), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      
-      
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+
+<table id="myproduct-datatable" class="cell-border compact stripe" data-source="<%= myproducts_path(format: :json) %>">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Price</th>
     </tr>
-<% end %>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
+<script>
+
+$(document).ready( function () {
+    $('#myproduct-datatable').dataTable({
+    "processing": true,
+    "serverSide": true,
+    "ajax": {
+    "url": $('#myproduct-datatable').data('source')
+    },
+    "pagingType": "full_numbers",
+    "columns": [
+    {"data": "id"},
+    {"data": "name"},
+    {"data": "price"}
+    ]
+    // pagingType is optional, if you want full pagination controls.
+    // Check dataTables documentation to learn more about
+    // available options.
+});
+
+} );
+</script>
