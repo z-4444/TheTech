@@ -1,9 +1,6 @@
 class CatagoriesController < ApplicationController
     def index
-        respond_to do |format|
-            format.html
-            format.json { render json: CatagoryDatatable.new(params) }
-        end
+        @catagories=Catagory.all
     end
     def show
         @catagory = Catagory.find(params[:id])

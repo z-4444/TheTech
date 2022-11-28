@@ -62,26 +62,15 @@ table#subcatagory-datatable.dataTable thead  {
   background-color: black;
 }
 
-table#subcatagory-datatable.dataTable tbody tr:hover {
-  background-color: #5BB9B8;
+table#subcatagory-datatable.dataTable thead  {
+  background-color: black;
 }
-table#subcatagory-datatable.dataTable tbody tr.odd  {
-  background-color: #00003f;
-}
-table#subcatagory-datatable.dataTable tbody tr.even  {
-  background-color: #27323f;
-}
-
 table#subcatagory-datatable.dataTable tbody tr:hover > .sorting_1 {
   background-color: #5BB9B8;
 }
-table#subcatagory-datatable.dataTable tbody tr.odd > .sorting_1 {
-  background-color: #00003f;
+table#subcatagory-datatable.dataTable tbody tr:hover {
+  background-color: #5BB9B8;
 }
-table#subcatagory-datatable.dataTable tbody tr.even > .sorting_1 {
-  background-color: #27323f;
-}
-
 ////////////////////////////////////  ........ Category Datatable   ........////////////////////////   
 
 table#catagory-datatable {
@@ -95,23 +84,9 @@ table#catagory-datatable {
 table#catagory-datatable.dataTable thead  {
   background-color: black;
 }
-
-table#catagory-datatable.dataTable tbody tr:hover {
-  background-color: #5BB9B8;
-}
-table#catagory-datatable.dataTable tbody tr.odd  {
-  background-color: #00003f;
-}
-table#catagory-datatable.dataTable tbody tr.even  {
-  background-color: #27323f;
-}
-
 table#catagory-datatable.dataTable tbody tr:hover > .sorting_1 {
   background-color: #5BB9B8;
 }
-table#catagory-datatable.dataTable tbody tr.odd > .sorting_1 {
-  background-color: #00003f;
-}
-table#catagory-datatable.dataTable tbody tr.even > .sorting_1 {
-  background-color: #27323f;
+table#catagory-datatable.dataTable tbody tr:hover {
+  background-color: #5BB9B8;
 }

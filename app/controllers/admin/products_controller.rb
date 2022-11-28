@@ -2,7 +2,6 @@ class Admin::ProductsController < ApplicationController
     load_and_authorize_resource
     def index
         @products = Product.all
-        authorize! :read, @products
     end
 
     def show

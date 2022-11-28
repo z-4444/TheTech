@@ -1,41 +1,36 @@
-
-
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
 <div class="m-3">
-  <table id="subcatagory-datatable" class="order-column cell-border row-border stripe table-bordered" data-source="<%= subcatagories_path(format: :json) %>">
+  <table id="subcatagory-datatable" class="order-column cell-border row-border stripe table-bordered" data-source="<%= catagories_path(format: :json) %>">
     <thead>
       <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>Category</th>
+        <th>Show</th>
+        <th>edit</th>
+        <th>remove</th>
       </tr>
     </thead>
     <tbody>
+      <% @subcatagories.each do |subcatagory| %>
+        <tr class="table-info hover">
+          <td><%= subcatagory.id %></td>
+          <td><%= subcatagory.name %></td>
+          <td><%= subcatagory.catagory.name %></td>
+          <td><%= link_to 'Show', subcatagory_path(subcatagory) %></td>
+          <td><%= link_to 'edit', edit_subcatagory_path(subcatagory) %></td>
+          <td><%= link_to 'remove', subcatagory_path(subcatagory), method: :delete, data: { confirm: 'Are you sure?' } %></td>        
+          
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>
-
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 
 <script>
-
-$(document).ready( function () {
-    $('#subcatagory-datatable').dataTable({
-    "processing": true,
-    "ordering": true,
-    "serverSide": true,
-    "ajax": {
-    "url": $('#subcatagory-datatable').data('source')
-    },
-    "pagingType": "full_numbers",
-    "columns": [
-    {"data": "id"},
-    {"data": "name"}
-    ]
-
-    // pagingType is optional, if you want full pagination controls.
-    // Check dataTables documentation to learn more about
-    // available options.
-    });
+  $(window).on('load', function() {
+    var t = $('#subcatagory-datatable').DataTable();
     $("body").css("background-color","#5BB9B8");
-} );
+  });
 </script>

@@ -30,6 +30,13 @@ class User::SessionsController < Devise::SessionsController
   #   # super 
   # end
 
+  def after_sign_in_path_for(resource)
+    if resource.admin? #Assuming there is such a function
+      admin_dashboard_index_path
+    else
+      session[:previous_url] || root_path
+    end
+  end
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.

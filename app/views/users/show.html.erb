@@ -1,61 +1,89 @@
-<%= link_to 'Edit Profile',edit_user_registration_path(@user) %>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-<div>
-<h5><%= @user.first_name %></h5>
+<div class="container emp-profile">
+  <form method="post">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-img">
+          <% if @user.image.present? %>
+            <%= image_tag @user.image.url %>
+          <% end %>
+          <div class="file btn btn-lg btn-primary">
+              Change Photo
+              <input type="file" name="file"/>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="profile-head">
+          <h5>
+            <%= @user.first_name %><%= @user.last_name %>
+          </h5>
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <%= link_to 'Edit Profile',edit_user_registration_path(@user),class:"profile-edit-btn", name:"btnAddMore" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="tab-content profile-tab" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row">
+              <div class="col-md-6">
+                <label>Name</label>
+              </div>
+              <div class="col-md-6">
+                <p><%= @user.first_name %><%= @user.last_name %></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Email</label>
+              </div>
+              <div class="col-md-6">
+                <p><%= @user.email %></p>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                  <label>Phone</label>
+                </div>
+                <div class="col-md-6">
+                  <p><%= @user.phone_number %></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                  <label>Country</label>
+                </div>
+                <div class="col-md-6">
+                  <% if @user.country.present? %>
+                  <p><%= @user.country.name %></p>
+                  <% end %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                  <label>City</label>
+                </div>
+                <div class="col-md-6">
+                <% if @user.city.present? %>
+                  <p><%= @user.city.name %></p>
+                  <% end %>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
-<div>
-<h5><%= @user.last_name %></h5>
-</div>
-<div>
-<h5><%= @user.email %></h5>
-</div>
-<div>
-<h5><%= @user.phone_number %></h5>
-</div>
-<div>
-<h5><%= @user.status %></h5>
-</div>
-<div>
-<% if @user.image.present? %>
-  <%= image_tag @user.image.url, style: "width: 30px; display: block" %>
-<% end %>
-</div>
-<div>
-<% if @user.country.present? %>
-  <%= @user.country.name %>
-<% end %>
-</div>
-<% if @user.state.present? %>
-  <% State.where(state_id: @user.state_id).each do |s| %>
-  <%= s.name %>
-  <% end %>
-<% end %>
-</div>
-<div>
-<% if @user.city.present? %>
-  <%= @user.city.name %>
-<% end %>
-</div>
-
-<% if @user.role == 'admin' || @user.role == 'seller' %>
-  <div>
-  <h4>create new product</h4>
-  <%= link_to 'new product', new_admin_product_path %>
-  </div>
-  <div>
-  <h4>Your products</h4>
-  <%= link_to 'your products', myproducts_path %>
-  </div>
-<% end %>
-<% if @user.role == 'admin' %>
-  <h4>Catagories</h4>
-  <div>
-  <%= link_to 'new catagories', new_catagory_path %>
-  <%= link_to 'all catagories', catagories_path %>
-  </div>
-  <h4>Subcatagories</h4>
-  <div>
-  <%= link_to 'all subcatagories', subcatagories_path %>
-  <%= link_to 'new subcatagories', new_subcatagory_path %>
-  </div>
-<% end %>

@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   }
   namespace :admin do
     resources :users
-    resources :products,except: [:index,:show]
+    resources :products
+    resources :orders,only: [:index]
   end
 
   resources :users, only: [:show]
