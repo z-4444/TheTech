@@ -1,35 +1,48 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
 <h1>All Users</h1>
-<table class="table table-striped">
-  <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Email</th>
-    <th>Phone Number</th>
-    <th>Image</th>
-    <th>Current Status</th>
-    <th colspan="3"></th>
-  </tr>
- 
-  <% @users.each do |user| %>
-    <tr class="table-info">
-      <td><%= user.first_name %></td>
-      <td><%= user.last_name %></td>
-      <td><%= user.email %></td>
-      <td><%= user.phone_number %></td>
-      <% if user.image.present? %>
-       <td><%= image_tag user.image.url, style: "width: 30px; display: block" %>
-       </td>
-       <% else %>
-       <td>no image</td>
-      <% end %>
-      <td><%= user.status %></td>
-      <% if can? [:read, :update, :destroy],User %>
-      <td><%= link_to 'Show', admin_user_path(user) %></td>
-      <td><%= link_to 'edit', edit_user_registration_path(user) %></td>
-      <td><%= link_to 'remove', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>        
-      <% end %>
-
-      <td></td>
-      
+<table id="user_datatable" class="table table-striped">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>Image</th>
+      <th>status</th>
+      <th>show</th>
+      <th>edit</th>
+      <th>remove</th>
     </tr>
-  <% end %>
+  </thead> 
+  <tbody>
+    <% @users.each do |user| %>
+      <tr class="table-info hover">
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.phone_number %></td>
+        <% if user.image.present? %>
+        <td><%= image_tag user.image.url, style: "width: 30px; display: block" %>
+        </td>
+        <% else %>
+        <td>no image</td>
+        <% end %>
+        <td><%= user.status %></td>
+        <td><%= link_to 'Show', admin_user_path(user) %></td>
+        <td><%= link_to 'edit', edit_user_registration_path(user) %></td>
+        <td><%= link_to 'remove', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>        
+        
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
+<script>
+  $(document).ready( function () {
+    var t = $('#user_datatable').DataTable();
+  });
+</script>
+

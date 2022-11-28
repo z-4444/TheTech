@@ -13,3 +13,105 @@
 //@import 'datatables/extensions/RowReorder/rowReorder.dataTables';
 //@import 'datatables/extensions/Scroller/scroller.dataTables';
 //@import 'datatables/extensions/Select/select.dataTables';
+
+
+////////////////////////////////////  ........ Product Datatable   ........////////////////////////   
+table#myproduct-datatable {
+    font: 90%/1.45em "Helvetica Neue", HelveticaNeue, Verdana, Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white
+  }
+  
+  
+  table#myproduct-datatable.dataTable thead  {
+    background-color: black;
+  }
+
+  table#myproduct-datatable.dataTable tbody tr:hover {
+    background-color: #5BB9B8;
+  }
+  table#myproduct-datatable.dataTable tbody tr.odd  {
+    background-color: #00003f;
+  }
+  table#myproduct-datatable.dataTable tbody tr.even  {
+    background-color: #27323f;
+  }
+  
+  table#myproduct-datatable.dataTable tbody tr:hover > .sorting_1 {
+    background-color: #5BB9B8;
+  }
+  table#myproduct-datatable.dataTable tbody tr.odd > .sorting_1 {
+    background-color: #00003f;
+  }
+  table#myproduct-datatable.dataTable tbody tr.even > .sorting_1 {
+    background-color: #27323f;
+  }
+
+////////////////////////////////////  ........ Subcategory Datatable   ........////////////////////////   
+
+table#subcatagory-datatable {
+  font: 90%/1.45em "Helvetica Neue", HelveticaNeue, Verdana, Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: white
+}
+
+
+table#subcatagory-datatable.dataTable thead  {
+  background-color: black;
+}
+
+table#subcatagory-datatable.dataTable tbody tr:hover {
+  background-color: #5BB9B8;
+}
+table#subcatagory-datatable.dataTable tbody tr.odd  {
+  background-color: #00003f;
+}
+table#subcatagory-datatable.dataTable tbody tr.even  {
+  background-color: #27323f;
+}
+
+table#subcatagory-datatable.dataTable tbody tr:hover > .sorting_1 {
+  background-color: #5BB9B8;
+}
+table#subcatagory-datatable.dataTable tbody tr.odd > .sorting_1 {
+  background-color: #00003f;
+}
+table#subcatagory-datatable.dataTable tbody tr.even > .sorting_1 {
+  background-color: #27323f;
+}
+
+////////////////////////////////////  ........ Category Datatable   ........////////////////////////   
+
+table#catagory-datatable {
+  font: 90%/1.45em "Helvetica Neue", HelveticaNeue, Verdana, Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: white
+}
+.dataTables_filter input { margin-bottom: 5px; }
+
+table#catagory-datatable.dataTable thead  {
+  background-color: black;
+}
+
+table#catagory-datatable.dataTable tbody tr:hover {
+  background-color: #5BB9B8;
+}
+table#catagory-datatable.dataTable tbody tr.odd  {
+  background-color: #00003f;
+}
+table#catagory-datatable.dataTable tbody tr.even  {
+  background-color: #27323f;
+}
+
+table#catagory-datatable.dataTable tbody tr:hover > .sorting_1 {
+  background-color: #5BB9B8;
+}
+table#catagory-datatable.dataTable tbody tr.odd > .sorting_1 {
+  background-color: #00003f;
+}
+table#catagory-datatable.dataTable tbody tr.even > .sorting_1 {
+  background-color: #27323f;
+}

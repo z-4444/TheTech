@@ -1,7 +1,9 @@
 class SubcatagoriesController < ApplicationController
     def index
-        @subcatagories=Subcatagory.all
-    
+        respond_to do |format|
+            format.html
+            format.json { render json: SubcatagoryDatatable.new(params) }
+        end
     end
 
     def get_subcategory

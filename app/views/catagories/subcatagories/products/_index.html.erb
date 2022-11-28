@@ -1,5 +1,5 @@
   <div class="row row-cols-1 row-cols-md-3 g-4 py-5 px-5" style="margin-left: 200px;" >
-    <% Product.all.each do |product| %>
+    <% @products.each do |product| %>
       <div class="col">
         <div class="card h-100">
             <% if product.images.present? %>

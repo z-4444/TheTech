@@ -1,16 +1,17 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
-
-<table id="myproduct-datatable" class="cell-border compact stripe" data-source="<%= myproducts_path(format: :json) %>">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Price</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
+<div class="m-3">
+  <table id="myproduct-datatable" class="order-column cell-border row-border stripe table-bordered" data-source="<%= myproducts_path(format: :json) %>">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
 
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 
@@ -19,6 +20,7 @@
 $(document).ready( function () {
     $('#myproduct-datatable').dataTable({
     "processing": true,
+    "ordering": true,
     "serverSide": true,
     "ajax": {
     "url": $('#myproduct-datatable').data('source')
@@ -29,10 +31,11 @@ $(document).ready( function () {
     {"data": "name"},
     {"data": "price"}
     ]
+
     // pagingType is optional, if you want full pagination controls.
     // Check dataTables documentation to learn more about
     // available options.
-});
-
+    });
+    $("body").css("background-color","#5BB9B8");
 } );
 </script>

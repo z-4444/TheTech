@@ -1,10 +1,41 @@
 
-<% @catagories.each do |catagory| %>
-      <tr class="table-info">
-      <td><%= catagory.name %></td>
-      <td><%= catagory.user.first_name %><%= catagory.user.last_name %></td>
-      <td><%= link_to 'Show', catagory_path(catagory) %></td>
-      <td><%= link_to 'edit', edit_catagory_path(catagory) %></td>
-      <td><%= link_to 'remove', catagory_path(catagory), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-<% end %>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+<div class="m-3">
+  <table id="catagory-datatable" class="order-column cell-border row-border stripe table-bordered" data-source="<%= catagories_path(format: :json) %>">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
+<script>
+
+$(document).ready( function () {
+    $('#catagory-datatable').dataTable({
+    "processing": true,
+    "ordering": true,
+    "serverSide": true,
+    "ajax": {
+    "url": $('#catagory-datatable').data('source')
+    },
+    "pagingType": "full_numbers",
+    "columns": [
+    {"data": "id"},
+    {"data": "name"}
+    ]
+
+    // pagingType is optional, if you want full pagination controls.
+    // Check dataTables documentation to learn more about
+    // available options.
+    });
+    $("body").css({"background-color":"#5BB9B8"});
+} );
+</script>

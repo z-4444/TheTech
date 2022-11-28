@@ -17,7 +17,7 @@
               class="fas fa-bars pe-2"></i>Menu</a>
         </li>
       </ul>
-      <form class="d-flex align-items-center w-100 form-search">
+      <form class="d-flex align-items-center w-100 form-search" action="/catagories/subcatagories/products" >
         <div class="input-group">
           <button class="btn btn-light dropdown-toggle shadow-0" type="button" data-bs-toggle="dropdown"
             aria-expanded="false" style="padding-bottom: 0.4rem;">All
@@ -33,9 +33,9 @@
               <%= link_to 'All', catagories_subcatagories_products_path, class:"dropdown-item" %>
             </li>
           </ul>
-          <input type="search" class="form-control" placeholder="Search" aria-label="Search" />
+          <input type="search" class="form-control" placeholder="Search" id="search" name="q" aria-label="Search" >
+          <button class="btn btn-primary" type="submit"><i class="fas fa-search ps-3"></i></button>
         </div>
-        <a href="#!" class="text-white"><i class="fas fa-search ps-3"></i></a>
       </form>
       <ul class="navbar-nav ms-3">
       <% if user_signed_in? %>
@@ -154,6 +154,13 @@
 
         });
 
+        $("#searchk").on("change",function (e) {
+          console.log(this);
+          $.ajax ({
+            type: "get",
+            url: "/catagories/subcatagories/products"
+          });
+        });
     });
 
 </script>
