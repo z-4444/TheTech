@@ -7,7 +7,7 @@ module FindProduct
                 @subcatagory=Subcatagory.find(params[:subcatagory])
                 @products=@subcatagory.products
             elsif params.has_key?(:q)
-                @products=Product.where("name LIKE ?","%"+ params[:q] +"%")
+                @products=Product.where("lower(name) LIKE ?","%"+ params[:q] +"%")
             else
                 @products=Product.all
             end

@@ -1,10 +1,11 @@
 class SubcatagoriesController < ApplicationController
+    load_and_authorize_resource :except => [:get_subcategory]
+    
     def index
         @subcatagories=Subcatagory.all
     end
 
     def get_subcategory
-        # debugger
         @catagory=Catagory.find(params[:id])
         @subcatagories=@catagory.subcatagories
         respond_to do |format|

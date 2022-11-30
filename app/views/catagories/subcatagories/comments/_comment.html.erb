@@ -33,7 +33,7 @@
                   </p>
                   <div class="d-flex justify-content-between align-items-center">
                     <p class="small mb-0" style="color: #aaa;">
-                    <% if user_signed_in? && comment.user.id==current_user.id %>
+                    <% if user_signed_in? && (comment.user.id==current_user.id || current_user.admin?) %>
                     <%= link_to "Edit Comment",edit_catagories_subcatagories_comment_path(comment),
                      class:"btn btn-primary btn-sm",remote: true %>
                       <%= link_to 'Remove Comment',catagories_subcatagories_comment_path(comment),

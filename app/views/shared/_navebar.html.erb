@@ -47,7 +47,7 @@
       <% end %>
         <li class="nav-item px-1 mx-1">
           <% if user_signed_in? %>
-            <% if current_user.admin? %>
+            <% if current_user.admin? || current_user.seller? %>
               <%= link_to "DASHBOARD",admin_dashboard_index_path,class:"nav nav-link" %>
             <% else %>
             <div class="dropdown">

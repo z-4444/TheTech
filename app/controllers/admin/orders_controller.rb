@@ -1,5 +1,7 @@
 class Admin::OrdersController < ApplicationController
+  load_and_authorize_resource
+  include ConcernHelper
   def index
-    @orders = Order.all
+    find_order
   end
 end

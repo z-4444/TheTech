@@ -12,7 +12,6 @@ class Catagories::Subcatagories::CommentsController < ApplicationController
     end
 
     def edit
-        # debugger
         @product=@comment.product
         respond_to do |format|
             format.js
@@ -30,8 +29,8 @@ class Catagories::Subcatagories::CommentsController < ApplicationController
     end
 
     def update
-        debugger
         @comments = Comment.find(params[:id])
+        @product=@comment.product
         respond_to do |format|
         if @comment.update(comment_params)
           format.js { render :layout => false }

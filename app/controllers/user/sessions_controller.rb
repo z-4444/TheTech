@@ -31,7 +31,7 @@ class User::SessionsController < Devise::SessionsController
   # end
 
   def after_sign_in_path_for(resource)
-    if resource.admin? #Assuming there is such a function
+    if resource.admin? || resource.seller?
       admin_dashboard_index_path
     else
       session[:previous_url] || root_path

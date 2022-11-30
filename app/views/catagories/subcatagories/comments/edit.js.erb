@@ -1,3 +1,3 @@
-$('#commentform').replaceWith("<%= j (render 'form2') %>");
+$('.comment-form').html("<%= j (render 'form') %>");
 $('.commentbox').focus();
 $('.commentbox').val('.commentbox').val("<%= @comment.body %>");

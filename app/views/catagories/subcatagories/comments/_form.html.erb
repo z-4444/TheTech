@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <section style="background-color: #f7f6f6;">
-  <div class="container">
+  <div class="container comment-form">
     <div class="row d-flex justify-content-center">
       <div class="col-md-12 col-lg-10 col-xl-8">
         <div class="card">
-        <%= form_for @comment,url: catagories_subcatagories_comments_path, method: :post, :remote => true do |f| %>
+        <%= form_for @comment,url: create_update,method: method, :remote => true do |f| %>
           <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
             <div class="d-flex flex-start w-100">
                <% if user_signed_in? %>
@@ -33,6 +33,7 @@
 </section>
 
 <script>
+
 $(document).ready(function () {
   $(function () {
     $("#rateYo").rateYo({

@@ -39,12 +39,35 @@
     </div>
   </div>
 </div>
-
+<% if @product.user != current_user || current_user.admin? %>
 <div class="commentsform" id='commentForm' >
    <%= render 'catagories/subcatagories/comments/form' %>
-</div> 
+</div>   
+<% end %>
+
 <div id='commentdiv' >
    <%= render 'catagories/subcatagories/comments/comment' %>  
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Conratulation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p> Product added to cart seccussffuly.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <%= link_to "Show", cart_path(current_user.cart), :class=> "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -63,16 +86,18 @@
           });
         $(".rounded-pill").on("click" ,function(e) {
           var btn_press= $(this).html();
-            console.log(btn_press);
             var product_id = <%= @product.id %>
-            var user_id = <%= @product.id %>
-            // debugger
+            var product_user = <%= @product.user.id %>
+            var current_user = <%= current_user.id %>
+            if (product_user === current_user) {
+              alert("Please Stop You are the owner of the Product")
+            } else {
             $.ajax({
               type:"post",
               url:"/cart_products?product_id="+product_id
-              // debugger 
-              // data: { product_id: product_id }
-            });
+            });              
+            }
+
         });
 
     });

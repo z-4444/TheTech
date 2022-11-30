@@ -17,10 +17,12 @@
             <i class="fas fa-list-alt me-3"></i><span>Categories</span>
         <% end %>
         <%= link_to admin_products_path,class:"list-group-item list-group-item-action py-2 ripple",data: { turbolinks: false } do %>
-            <i class="fas fa-calendar fa-fw me-3"></i><span>Products</span>
+           <i class="fas fa-calendar fa-fw me-3"></i><span>Products</span>
         <% end %>
-        <%= link_to admin_users_path,class:"list-group-item list-group-item-action py-2 ripple",data: { turbolinks: false } do %>
-            <i class="fas fa-users fa-fw me-3"></i><span>Users</span>
+        <% if can? :read,User %>
+          <%= link_to admin_users_path,class:"list-group-item list-group-item-action py-2 ripple",data: { turbolinks: false } do %>
+              <i class="fas fa-users fa-fw me-3"></i><span>Users</span>
+          <% end %>
         <% end %>
         <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
             class="fas fa-money-bill fa-fw me-3"></i><span>Sales</span></a>
@@ -78,6 +80,7 @@
 <main class="mx-5" style="margin-top: 58px;">
 <div class="container pt-4"></div>
 <div class="row">
+<% if can? :create,Product %>
   <div class="col-sm-6 mb-4">
     <div class="card text-center" style="background-color:blue; color:white;" >
       <div class="card-body p-4">
@@ -85,13 +88,17 @@
       </div>
     </div>
   </div>
+  <% end %>
+  <% if can? :create,Catagory %>
   <div class="col-sm-6 mb-4">
     <div class="card text-center" style="background-color:yellow;" >
       <div class="card-body p-4">
-        <h5 class="card-title p-4" > <%= link_to "Create New Category" ,new_catagory_path ,class:"nav-link link-dark hover" %></h5>
+        <h5 class="card-title p-4" ><%= link_to "Create New Category" ,new_catagory_path ,class:"nav-link link-dark hover" %></h5>            
       </div>
     </div>
   </div>
+  <% end %>
+  <% if can? :create,Subcatagory %>
   <div class="col-sm-6 mb-4">
     <div class="card text-center" style="background-color:yellow;" >
       <div class="card-body p-4">
@@ -99,6 +106,8 @@
       </div>
     </div>
   </div>
+  <% end %>
+  <% if can? :create,User %>
   <div class="col-sm-6 mb-4">
     <div class="card text-center" style="background-color:blue; color:white;" >
       <div class="card-body p-4">
@@ -106,6 +115,7 @@
       </div>
     </div>
   </div>
+  <% end %>
 </div>
 </main>
 
@@ -113,10 +123,10 @@
 $(document).ready(function(){
 
   $(".hover").mouseover(function(){
-    $(this).animate({ fontSize: "+=8px"});
+    $(this).animate({ fontSize: "+=4px"});
   });
   $(".hover").mouseout(function(){
-    $(this).animate({ fontSize: "-=8px"});
+    $(this).animate({ fontSize: "-=4px"});
   });
   $(".hover").click(function(){
     if ($(this).css('font-size')!='') {

@@ -1,7 +1,9 @@
 class Admin::ProductsController < ApplicationController
     load_and_authorize_resource
+    include ConcernHelper
+    
     def index
-        @products = Product.all
+        find_admin_seller_product
     end
 
     def show
