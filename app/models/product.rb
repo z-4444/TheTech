@@ -26,4 +26,6 @@ class Product < ApplicationRecord
 
     # {message: "Subcatagory must include. Don't worry if you do not have subcatagory 
     #     click #{ link_to 'new subcatagories', new_users_subcatagory_path } "}
+    
+    scope :search, -> (query) {where("lower(name) LIKE ?","%"+ query +"%")}
 end
