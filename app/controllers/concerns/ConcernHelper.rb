@@ -5,7 +5,7 @@ module ConcernHelper
         def find_order
             if current_user.seller?
                 @product = current_user.products
-                @orders = Order.joins(:orderproducts).where(:orderproducts => {:product_id => @product.ids})
+                @orders = Order.seller_products
 
             else
                 @orders=Order.all
